@@ -1,2 +1,0 @@
-# buaa_SE_2022_Pair_Program
-北航22春软工结对编程项目
