@@ -1,0 +1,29 @@
+// -w -r
+input: {"abc", "abbc", "cde", "efa"}
+output: {"abbc", "cde", "efa", "abc"}
+
+input: {"abc", "abbc", "abbbbbc", "cde", "efa", "egh", "hqx", "xay"}
+output: {"abc", "cde", "egh", "hqx", "xay"}
+
+// -w -h a -t z -r
+input: {"abc", "abbc", "abbbbbc", "cde", "efa", "egh", "hqx", "xay"}
+output: null
+
+input: {"abc", "abbc", "abbbbbc", "cde", "efa", "egh", "hqx", "xay", "ypp", "ppl", "cz"}
+output: {"abc", "cde", "efa", "abbc", "cz"}
+
+
+// -c -r
+input: {"abc", "abbc", "cde", "efa"}
+output: {"abbc", "cde", "efa", "abc"}
+
+input: {"abc", "axxxxxxxxxxc", "abbbbbbbbbbc", "cde", "efa", "egh", "hqx", "xyz"}
+output: {"abbbbbbbbbbc", "cde", "efa", "axxxxxxxxxxc"}
+
+
+// -c -h a -t z -r
+input: {"abc", "abbc", "abbbbbc", "cde", "efa", "egh", "hqx", "xay"}
+output: null
+
+input: {"abc", "abbc", "abbbbbc", "cde", "efa", "egh", "hqx", "xay", "ypp", "ppl", "cz"}
+output: {"abbbbbc", "cde", "efa", "abbc", "cz"}

@@ -1,0 +1,192 @@
+//测试重复字符串的情况
+{"abc", "abc", "abc", "abc", "abc"}
+{"abc", "abc", "abc", "cde", "cde", "cde"}
+{"abc", "abc", "abc", "cde", "cde", "cde", "efg", "ghi"}
+
+//测试成环的情况
+{"abc", "cbe", "cdd", "dba"}
+{"abc", "aba", "aca"}
+{"abc", "cbe", "cbe", "dbe", "dce", "dse", "ddd", "dbd"}
+
+
+
+
+//-n
+input: {"abc", "abd", "aeg", "ccf", "cccccf", "grs", "deg"}
+output: 
+{"abc", "ccf"}
+{"abc", "cccccf"}
+{"abd",  "deg"}
+{"aeg", "grs"}
+{"abd", "deg", "grs"}
+
+input: {"abc", "ccf", "cccccf", "frs", "frrrrrs", "str", "ruv"}
+output: 
+{"abc", "ccf"}
+{"abc", "cccccf"}
+{"ccf", "frs"}
+{"ccf", "frrrrrs"}
+{"cccccf", "frs"}
+{"cccccf", "frrrrrs"}
+{"frs", "str"}
+{"frrrrrs", "str"}
+{"str", "ruv"}
+
+{"abc", "ccf", "frs"}
+{"abc", "ccf", "frrrrrs"}
+{"abc", "cccccf", "frs"}
+{"abc", "cccccf", "frrrrrs"}
+{"ccf", "frs", "str"}
+{"cccccf", "frs", "str"}
+{"ccf", "frrrrrs", str"}
+{"cccccf", "frrrrrs", "str"}
+{"frs", "str", "ruv"}
+{"frrrrrs", "str", "ruv"}
+
+{"abc", "ccf", "frs", "str"} 
+{"abc", "cccccf", "frs", "str"}
+{"abc", "ccf", "frrrrrs", "str"}
+{"abc", "cccccf", "frrrrrs", "str"}
+
+{"ccf", "frs", "str", "ruv"}
+{"cccccf", "frs", "str", "ruv"}
+{"ccf", "frrrrrs", "str", "ruv"}
+{"cccccf", "frrrrrs", "str", "ruv"}
+
+{"abc", "ccf", "frs", "str", "ruv"}
+{"abc", "cccccf", "frs", "str", "ruv"}
+{"abc", "ccf", "frrrrrs", "str", "ruv"}
+{"abc", "cccccf", "frrrrrs", "str", "ruv"}
+
+
+
+
+//-m
+input: {"abc", "abd", "aeg", "ccf", "cccccf", "grs", "deg"}
+output: {"abd", "deg", "grs"}
+
+input: {"abc", "ccf", "cccccf", "frs", "frrrrrs", "str", "ruv"}
+output:
+{"abc", "ccf", "frs", "str", "ruv"}
+
+input: {"abc", "ccf", "ftp", "ptth", "frrrrrs", "str", "ruv", "vvvvvv"}
+output: {"abc", "ccf", "frrrrrs", "str", "ruv", "vvvvvv"}
+
+
+
+
+//-w测试同-m
+input: {"abc", "abd", "aeg", "ccf", "cccccf", "grs", "deg"}
+output: {"abd", "deg", "grs"}
+
+input: {"abc", "ccf", "cccccf", "frs", "frrrrrs", "str", "ruv"}
+output:
+{"abc", "ccf", "frs", "str", "ruv"}
+{"abc", "cccccf", "frs", "str", "ruv"}
+{"abc", "ccf", "frrrrrs", "str", "ruv"}
+{"abc", "cccccf", "frrrrrs", "str", "ruv"}
+任选一种
+
+input: {"abc", "ccf", "ftp", "ptth", "frrrrrs", "str", "ruv", "vvvvvv"}
+output: {"abc", "ccf", "frrrrrs", "str", "ruv", "vvvvvv"}
+
+
+
+
+//-w -h a
+input: {"bbc", "bbd", "beg", "ccf", "cccccf", "grs", "deg"}
+output: null
+
+input: {"abc", "bbd", "ccf", "deg", "grrrrx", "xtq", "qbs"}
+output: {"abc", "ccf"}
+
+//-w -h b
+input: {"bbc", "bbd", "beg", "ccf", "grs", "deg"}
+output: {"bbd", "deg", "grs"}
+
+input: {"abc", "bbd", "ccf", "deg", "grrrrx", "xtq", "qbs"}
+output: {"bbd", "deg", "grrrrx", "xtq", "qbs"}
+
+
+
+
+//-w -t z
+input: {"bbc", "bbd", "beg", "ccf", "cccccf", "grs", "deg"}
+output: null
+
+input: {"bbc", "bbd", "beg", "ccf", "cccccf", "grs", "deg", "fz"}
+output: {"bbc","ccf", "fz"}
+
+//-w -t g
+input: {"bbc", "bbd", "beg", "ccf", "cccccf", "grs", "deg"}
+output: {"bbd", "deg"}
+
+input: {"bbc", "bbd", "beg", "ccf", "cccccf", "grs", "deg", "fz"}
+output: {"bbd", "deg"}
+
+
+
+
+//-w -h a -t z
+input: {"abc", "bbd", "beg", "ccf", "cccccf", "grs", "deg"}
+output: null
+
+input: {"abc", "bbd", "beg", "ccf", "cccccf", "grs", "dez"}
+output: null
+
+input: {"abc", "abd", "beg", "ccf", "cccccf", "grs", "dez"}
+output: {"abd", "dez"}
+
+input: {"abc", "abd", "beg", "ccf", "ftz", "dez"}
+output: {"abc", "ccf", "ftz"}
+
+
+
+
+//-c
+input: {"abc", "cde", "efg", "cddddddddddddddddde"}
+output: {"abc", "cddddddddddddddddde", "efg"}
+
+input: {"abc", "cde", "efg", "cddddddddddddddddde", "chh", "hyq", "qps", "szz"}
+output: {"abc", "cddddddddddddddddde", "efg"}
+
+
+
+
+//-c -h a
+input: {"mbc", "cde", "efg", "cddddddddddddddddde", "chh", "hyq", "qps", "szz"}
+output: null
+
+input: {"abc", "cde", "efg", "cddddddddddddddddde", "chh", "hyq", "qps", "szz"}
+output: {"abc", "cddddddddddddddddde", "efg"}
+
+//-c -h h
+input: {"abc", "cde", "efg", "cddddddddddddddddde", "chh", "hyq", "qps", "szz"}
+output: {"hyq", "qps", "szz"}
+
+
+
+
+//-c -t z
+input: {"abc", "cde", "efg", "cddddddddddddddddde", "chh", "hyq", "qps"}
+output: null
+
+input: {"abc", "cde", "efg", "cddddddddddddddddde", "chh", "hyq", "qps", "szz"}
+output: {"abc", "chh", "hyq", "qps", "szz"}
+
+//-c -t e
+input: {"abc", "cde", "efg", "cddddddddddddddddde", "chh", "hyq", "qps", "szz"}
+output: {"abc", "cddddddddddddddddde"}
+
+
+
+
+//-c -h a -t z
+input: {"abc", "cde", "efg", "cddddddddddddddddde", "chh", "hyq", "qps", "szz"}
+output: {"abc", "chh", "hyq", "qps", "szz"}
+
+input: {"cde", "efg", "cddddddddddddddddde", "chh", "hyq", "qps", "szz"}
+output: null
+
+
+
