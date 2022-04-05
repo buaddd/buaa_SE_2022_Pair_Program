@@ -175,7 +175,7 @@ int Word_chain::get_chain_word_num() {
 }
 
 int Word_chain::get_chain_char_num() {
-	return this->chain_char_num;
+	return this->chain_char.size();
 }
 
 /*

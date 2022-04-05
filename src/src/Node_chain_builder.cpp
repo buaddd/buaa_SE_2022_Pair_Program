@@ -133,7 +133,7 @@ void Node_chain_builder::word_type_chain_builder(Node* node) {
 	Node* repeated_node = NULL;
 
 	if (this->build_type == WORD_UNI_TYPE && node->get_head() == node->get_tail()) {
-		this->node_chain.update_chain_char();
+		this->node_chain.update_chain_word();
 		return;
 	}
 

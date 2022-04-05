@@ -7,8 +7,6 @@
 #include <vector>
 #include <set>
 #include <map>
-#include "Node.h"
-#include "Word_vertex.h"
 using namespace std;
 
 class MyIO

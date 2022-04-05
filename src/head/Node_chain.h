@@ -7,6 +7,7 @@
 
 using namespace std;
 
+class Node;
 class Node_chain
 {
 private:

@@ -175,7 +175,7 @@ void Node_chain::get_chain_all(char** result) {
 }
 
 int Node_chain::get_chain_char_num() {
-	return this->chain_char_num;
+	return this->chain_char.size();
 }
 
 void Node_chain::get_chain_char(char** result) {

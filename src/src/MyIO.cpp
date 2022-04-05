@@ -52,13 +52,15 @@ void MyIO::read_file() {
 void MyIO::write_file(bool toFile, char** result, int length) {
     if (!toFile) {  //输出到终端
         cout << length <<endl;
-        for (int i = 0; result[i] != NULL; i++) {
+        for (int i = 0; i < length; i++) {
             cout << result[i] << endl;
         }
     }
     else {  //输出到文件
         std::ofstream out(MyIO::writePath);
-        for (int i = 0; result[i] != NULL; i++) {
+        //cout << length << endl;
+        for (int i = 0; i < length; i++) {
+            //cout << result[i] << endl;
             out << result[i] << endl;
         }
     }

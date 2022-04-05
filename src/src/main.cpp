@@ -11,8 +11,10 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-    char head = '/0';
-    char tail = '/0';
+    //int argc = 7;
+    //char* argv[256] = {(char*)"hw.exe", (char*)"-c", (char*)"-h", (char*)"a", (char*)"-t", (char*) "z", (char*)"tf.txt"};
+    char head = '\0';
+    char tail = '\0';
     bool enable_n = false;
     bool enable_w = false;
     bool enable_m = false;
@@ -181,13 +183,18 @@ int main(int argc, char* argv[]) {
     if (enable_c) {
         result_len = core->gen_chain_char(input, len, result, head, tail, enable_r);
     }
-    if (enable_w) {
-        for (int i = 0; i < len; i++) {
-            cout << input[i] << endl;
-        }
-        result_len = core->gen_chain_word(input, len, result, head, tail, true);
+    if (enable_w) {   
+        result_len = core->gen_chain_word(input, len, result, head, tail, enable_r);
+    }
+    if (result_len == 0) {
+        cout << "no valid word chain" << endl;
+        return 0;
+    }
+    if (result_len > 20000) {
+        cout << "exceed max length 20000" << endl;
         cout << result_len << endl;
-    } 
+        return 0;
+    }
 
     /* Êä³ö */
     io->write_file(!enable_n, result, result_len);

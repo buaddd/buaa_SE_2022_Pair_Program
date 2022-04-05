@@ -4,6 +4,8 @@
 #include <vector>
 using namespace std;
 
+class Node;
+class Generator;
 class Node_graph
 {
 private:

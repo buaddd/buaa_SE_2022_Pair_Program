@@ -3,6 +3,9 @@
 #include "Node_graph.h"
 #include "Generator.h"
 
+class Node_chain;
+class Node_graph;
+class Generator;
 class Node_chain_builder
 {
 private:
