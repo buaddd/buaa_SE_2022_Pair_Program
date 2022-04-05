@@ -40,13 +40,14 @@ void Word_chain_builder::travelsal_build(Word_vertex* wv, Word_tarjan_vertex* wt
 	wv->set_visited();
 	this->word_chain.add_word(wv, wtv);
 
-	if (wv->get_word_tarjan_vertex() != wtv &&
-		wv->has_chain()) {
-		if (this->build_type == CHAR_TYPE) {
-			this->word_chain.update_cur_chain_char();
-		}
-		else {
-			this->word_chain.update_cur_chain_word();
+	if (wv->get_word_tarjan_vertex() != wtv) {
+		if (wv->has_chain()) {
+			if (this->build_type == CHAR_TYPE) {
+				this->word_chain.update_cur_chain_char();
+			}
+			else {
+				this->word_chain.update_cur_chain_word();
+			}
 		}
 	}
 	else {
