@@ -6,6 +6,7 @@ Checker::Checker() {
 
 void Checker::setup(char** words, int len) {
 	Generator* gen = new Generator(words, len);
+	gen->build_nodes();
 	gen->get_nodes(nodes);
 	gen->get_head_map(&start_map);
 }

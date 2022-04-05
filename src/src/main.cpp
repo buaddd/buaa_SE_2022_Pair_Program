@@ -11,8 +11,8 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-    //int argc = 7;
-    //char* argv[256] = {(char*)"hw.exe", (char*)"-c", (char*)"-h", (char*)"a", (char*)"-t", (char*) "z", (char*)"tf.txt"};
+    //int argc = 3;
+    //char* argv[256] = {(char*)"hw.exe", (char*)"-n", (char*)"tf.txt"};
     char head = '\0';
     char tail = '\0';
     bool enable_n = false;
@@ -152,6 +152,7 @@ int main(int argc, char* argv[]) {
     /* 获取输入的单词 */
     char* input[10000];
     int len = io->get_all_words(input);
+    
     Generator* generator = new Generator(input, len);
     if (enable_r) {
         generator->build_words();
