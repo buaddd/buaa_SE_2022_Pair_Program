@@ -6,15 +6,16 @@ Checker::Checker() {
 
 void Checker::setup(char** words, int len) {
 	Generator* gen = new Generator(words, len);
+	gen->build_nodes();
 	gen->get_nodes(nodes);
 	gen->get_head_map(&start_map);
 }
 
-//ÍØÆËÅÅĞòÅĞ»·
+//æ‹“æ‰‘æ’åºåˆ¤ç¯
 bool Checker::judge_circle() {
-	int count = 0; //ÓÃÓÚ¼ÆËãÊÇ·ñ»¹ÓĞ½ÚµãÊ£Óà
+	int count = 0; //ç”¨äºè®¡ç®—æ˜¯å¦è¿˜æœ‰èŠ‚ç‚¹å‰©ä½™
 	queue<Node*> node_queue;
-	//ÕÒ³öËùÓĞÈë¶ÈÎª0µÄ½Úµã
+	//æ‰¾å‡ºæ‰€æœ‰å…¥åº¦ä¸º0çš„èŠ‚ç‚¹
 	for (vector<Node*>::iterator it = nodes.begin(); it != nodes.end(); it++)
 	{
 		Node* node = *it;
@@ -22,7 +23,7 @@ bool Checker::judge_circle() {
 			node_queue.push(node);
 			count++;
 		}
-		//Í¬Ê±ÅĞ¶ÏÊÇ·ñ´æÔÚ¶à¸öĞÎÈça....aµÄµ¥´Ê£¬Èô´æÔÚÔò±Ø¶¨ÓĞ»·
+		//åŒæ—¶åˆ¤æ–­æ˜¯å¦å­˜åœ¨å¤šä¸ªå½¢å¦‚a....açš„å•è¯ï¼Œè‹¥å­˜åœ¨åˆ™å¿…å®šæœ‰ç¯
 		if (node->get_head() == node->get_tail()) {
 			vector<string*> temp_vector;
 			node->get_list(temp_vector);
@@ -37,7 +38,7 @@ bool Checker::judge_circle() {
 		//temp->show_words();
 		node_queue.pop();
 		char end = temp->get_tail();
-		//µ±Ç°½ÚµãÓĞºó¼Ì½Úµã
+		//å½“å‰èŠ‚ç‚¹æœ‰åç»§èŠ‚ç‚¹
 		if (start_map.count(end) > 0) {
 			vector<Node*> list = start_map[end];
 			for (vector<Node*>::iterator iter = list.begin(); iter != list.end(); iter++) {
