@@ -31,7 +31,8 @@ void Word_chain_builder::build() {
 		wtv->set_visited();
 
 		for (set<Word_vertex*>::iterator it = word_set.begin(); it != word_set.end(); it++) {
-				travelsal_build(*it, wtv);
+			this->word_chain.clear_cur_chain();
+			travelsal_build(*it, wtv);
 		}
 	}
 }

@@ -53,9 +53,11 @@ void Word_chain::add_word(Word_vertex* wv, Word_tarjan_vertex* wtv) {
 	if (this->char_flag == true) {
 		if (wv->get_word_tarjan_vertex() != wtv) {
 			this->cur_word_chain_char_num += wv->get_chain_char_num();
+			this->cur_word_chain_word_num += wv->get_chain_word_num();
 		}
 		else {
 			this->cur_word_chain_char_num += wv->get_char_num();
+			this->cur_word_chain_word_num++;
 		}
 		
 	}
@@ -73,9 +75,11 @@ void Word_chain::remove_last_word(Word_tarjan_vertex* wtv) {
 	if (this->char_flag == true) {
 		if (this->cur_word_chain.back()->get_word_tarjan_vertex() != wtv) {
 			this->cur_word_chain_char_num -= this->cur_word_chain.back()->get_chain_char_num();
+			this->cur_word_chain_word_num -= this->cur_word_chain.back()->get_chain_word_num();
 		}
 		else {
 			this->cur_word_chain_char_num -= this->cur_word_chain.back()->get_char_num();
+			this->cur_word_chain_word_num--;
 		}
 	}
 	else {
@@ -103,7 +107,7 @@ bool Word_chain::is_acceptable(Word_tarjan_vertex* wtv) {
 		}
 	}
 
-	if (ok == false && (this->tail == '\0' || this->cur_word_chain.back()->get_tail() == this->tail)) {
+	if (this->cur_word_chain.back()->get_tail() == this->tail ||(ok == false && this->tail == '\0')) {
 		return true;
 	}
 
@@ -120,6 +124,13 @@ bool Word_chain::is_acceptable(Word_tarjan_vertex* wtv) {
 		但是我们没有保证 cur_word_chain 的 head 相同
 		所以 update_chain_word/char() 需要判断 head
 */
+void Word_chain::clear_cur_chain() {
+	this->cur_chain_char.clear();
+	this->cur_chain_word.clear();
+	this->cur_chain_char_num = 0;
+	this->cur_chain_word_num = 0;
+}
+
 void Word_chain::update_cur_chain_char() {
 	if (this->cur_word_chain_char_num > this->cur_chain_char_num) {
 		this->cur_chain_char.clear();
@@ -129,9 +140,9 @@ void Word_chain::update_cur_chain_char() {
 		this->cur_chain_char_num = this->cur_word_chain_char_num;
 
 		this->cur_chain_char.front()->set_word_chain(this->cur_chain_char, this->cur_chain_char_num, this->cur_chain_word_num);
+	
+		this->update_chain_char();
 	}
-
-	this->update_chain_char();
 }
 
 void Word_chain::update_cur_chain_word() {
@@ -143,9 +154,9 @@ void Word_chain::update_cur_chain_word() {
 		this->cur_chain_word_num = this->cur_word_chain_word_num;
 
 		this->cur_chain_word.front()->set_word_chain(this->cur_chain_word, this->cur_chain_char_num, this->cur_chain_word_num);
-	}
 	
-	this->update_chain_word();
+		this->update_chain_word();
+	}
 }
 
 void Word_chain::update_chain_char() {
@@ -156,6 +167,7 @@ void Word_chain::update_chain_char() {
 			this->chain_char.push_back(*it);
 		}
 		this->chain_char_num = this->cur_word_chain_char_num;
+		this->chain_word_num = this->cur_word_chain_word_num;
 	}
 }
 
@@ -175,7 +187,7 @@ int Word_chain::get_chain_word_num() {
 }
 
 int Word_chain::get_chain_char_num() {
-	return this->chain_char.size();
+	return this->chain_word_num;
 }
 
 /*
