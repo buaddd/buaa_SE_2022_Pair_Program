@@ -4,6 +4,7 @@
 #include "Word_vertex.h"
 #include "Word_tarjan_vertex.h"
 #include <vector>
+#include <iostream>
 using namespace std;
 
 class Word_vertex;
@@ -44,6 +45,7 @@ public:
 
 	bool is_acceptable(Word_tarjan_vertex*);
 
+	void clear_cur_chain();
 	void update_cur_chain_word();
 	void update_cur_chain_char();
 	void update_chain_word();
